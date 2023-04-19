@@ -10,6 +10,24 @@
     align-items: center;
     
 }
+.hover-link {
+  color: whitesmoke;
+}
+
+.container_1{
+  margin-top: 5%
+}
+.header{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  border-bottom: 1px solid white;
+  z-index: 100;
+}
+
+.hover-link:hover{
+  color: #D4AC0D
+}
 
 .blur {
     top: 50%;
@@ -90,4 +108,27 @@ select {
     fill: none;
     stroke: #ccc;
     stroke-width: 2px;
+}
+
+.tag {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.tag a {
+  text-decoration: none;
+  color: #D4AC0D;
+  /* background-color: white; */
+  padding: 3px 5px;
+  border-radius: 5px;
+}
+
+@media (max-width: 767.98px) {
+  .tag {
+    margin-right: 0;
+  }
+
+  .tag:not(:last-child) {
+    margin-bottom: 5px;
+  }
 }
