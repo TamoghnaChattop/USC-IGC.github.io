@@ -474,7 +474,7 @@
               style="color: #D4AC0D; font-weight: bold;">[Paper]</a>
             <a href="https://github.com/umgupta/2d-slice-set-networks" class="mr-2 ml-3 hover"
               target="_blank" style="color: #D4AC0D; font-weight: bold;">[Code]</a>
-            <a href="#" class="mr-0 ml-3 hover" target="_blank"
+            <a href="#" class="mr-0 ml-3 hover" target="_blank" id="poster-link"
               style="color: #D4AC0D; font-weight: bold;">[Poster]</a>
           </div>
         </div>
@@ -1123,13 +1123,19 @@
       update(d);
     }
 
-    var posterTag = document.getElementById('posterTag');
-    if (posterTag.href === '#') {
-      posterTag.onclick = function () { return false; }
-    }
-
   </script>
 
+  <script>
+    var posterLink = document.getElementById('poster-link');
+    var posterDisabled = true; // change this condition to whatever you need
+
+    if (posterDisabled) {
+      posterLink.onclick = function(event) {
+        event.preventDefault();
+      };
+      posterLink.style.color = '#888'; // optional: change the link color to indicate it's disabled
+    }
+  </script>
 
 
 
