@@ -1,3 +1,23 @@
+.conference{
+  color: rgb(212, 172, 13);
+  text-align: justify;
+}
+
+.authors{
+  color: rgb(212, 172, 13);
+  text-align: justify;
+  font-style: italic;
+}
+
+.paper-image{
+  height: fit-content;
+}
+
+.paper-title{
+  color: white;
+  text-align: center;
+  margin-top: 0;
+}
 
 .bg-cover {
     background-repeat: no-repeat;
