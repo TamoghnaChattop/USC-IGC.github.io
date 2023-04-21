@@ -1,12 +1,18 @@
-.conference{
-  color: rgb(212, 172, 13);
-  text-align: justify;
+#data-table p {
+  margin-bottom: 0.5rem;
 }
 
-.authors{
-  color: rgb(212, 172, 13);
+#data-table .conference{
+  color: #F4845F;
+  text-align: justify;
+  margin-bottom: 0.3rem;
+}
+
+#data-table .authors{
+  color: #F79D65;
   text-align: justify;
   font-style: italic;
+  margin-bottom: 0.3rem;
 }
 
 .paper-image{
