@@ -3,16 +3,16 @@
 }
 
 #data-table .conference{
-  color: #F4845F;
+  color: #D4AC0D;
   text-align: justify;
   margin-bottom: 0.3rem;
 }
 
 #data-table .authors{
-  color: #F79D65;
-  text-align: justify;
+  color: grey;
+  text-align: center;
   font-style: italic;
-  margin-bottom: 0.3rem;
+  font-size: small;
 }
 
 .paper-image{
@@ -162,3 +162,4 @@ select {
     margin-bottom: 5px;
   }
 }
+
