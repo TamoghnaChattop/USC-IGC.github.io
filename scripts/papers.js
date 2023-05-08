@@ -54,14 +54,16 @@ fetch('Paper List for Portal - Sheet1.csv')
       linksRow.classList.add('row', 'col-md-12', 'text-left');
 
       // Create the paper link element
-      const paperLinkElement = document.createElement('a');
-      paperLinkElement.href = link;
-      paperLinkElement.target = '_blank';
-      paperLinkElement.textContent = '[Paper]';
-      paperLinkElement.style.color = '#D4AC0D';
-      paperLinkElement.style.fontWeight = 'bold';
-      paperLinkElement.classList.add('mr-2', 'hover');
-      linksRow.appendChild(paperLinkElement);
+      if (link) {
+        const paperLinkElement = document.createElement('a');
+        paperLinkElement.href = link;
+        paperLinkElement.target = '_blank';
+        paperLinkElement.textContent = '[Paper]';
+        paperLinkElement.style.color = '#D4AC0D';
+        paperLinkElement.style.fontWeight = 'bold';
+        paperLinkElement.classList.add('mr-2', 'hover');
+        linksRow.appendChild(paperLinkElement);
+      }
 
       // Create the code link element
       if (github) {
