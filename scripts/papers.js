@@ -121,3 +121,22 @@ fetch('Paper List for Portal - Sheet1.csv')
     return jsonData;
   })
   .catch(error => console.error(error));
+
+// blinking arrow
+var arrowContainer = document.querySelector('.arrow-container');
+var arrowVisible = true;
+var scrollThreshold = 100;
+
+window.addEventListener('scroll', function () {
+  var scrolled = window.scrollY;
+
+  if (scrolled > scrollThreshold && arrowVisible) {
+    arrowContainer.style.opacity = '0';
+    arrowContainer.style.pointerEvents = 'none';
+    arrowVisible = false;
+  } else if (scrolled <= scrollThreshold && !arrowVisible) {
+    arrowContainer.style.opacity = '1';
+    arrowContainer.style.pointerEvents = 'auto';
+    arrowVisible = true;
+  }
+});
