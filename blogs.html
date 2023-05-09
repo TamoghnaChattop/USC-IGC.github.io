@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
     <link rel="stylesheet" href="style.css">
-   
+
 
 
     <!-- load the d3.js library -->
@@ -30,9 +30,9 @@
     </style>
 
     <!-- blinking arrow -->
-  <div class="arrow-container">
-    <div class="arrow"></div>
-  </div>
+    <div class="arrow-container">
+        <div class="arrow"></div>
+    </div>
 
 
 
@@ -77,25 +77,23 @@
         <div class="jombotron">
             <!-- <h6 style="color: #D4AC0D; font-weight: bold;" >IGC's</h6> -->
             <h2 style="color : #D4AC0D"><b>Introducing AI for Neuroimaging @ IGC</b></h2>
-            <p class="container pt-2 pr-5 pl-5 text-justify" style="color : white"> We are the Imaging Genetics
-                Center
-                AI Team from the Stevens Institute for Neuroimaging and Informatics (INI), at USC’s Keck School of
+            <p class="container pt-2 pr-5 pl-5 text-justify" style="color : white"> We are the Imaging Genetics Center
+                AI Team from the Stevens Institute for Neuroimaging and Informatics (INI) at USC’s Keck School of
                 Medicine. We develop advanced “big data” methods - including a variety of AI methods - to study the
                 human brain. We study over 20 major brain diseases, including Alzheimer’s disease and Parkinson’s
-                disease, disorders of brain development such as autism, psychiatric illnesses such as bipolar
-                disorder,
-                and neurogenetic disorders. A part of our research, weefforts is dedicated to are developing and
-                adaopting modern deep-learning algorithms to model brain data acquired by various brain imaging
-                techniques, such as mMagnetic rResonance iImaging (MRI) and dDiffusion tTensor iImaging (DTIs). We
-                have
-                proposed many novelnew model architectures to process MRI inputs, for various tasks such as
-                computer-aided diagnosis or prognosisrnoi. Addressing challenges specific to neuroimaging, we have
-                demonstrated the benefits of using transfer learning and pre-training for neuroimaging, especially
-                as
-                most of the neuroimaging datasets are small (usually hundreds rather than tens of thousands of
-                scans)o .
-                We have also evaluated the harmonization of datasets andor the additional value of fusing multiple
-                modalities in neuroimaging studies. This post summarizes our recent efforts in these directions.
+                disease, disorders of brain development such as autism, psychiatric illnesses such as bipolar disorder,
+                and neurogenetic disorders.<br><br> The recent advances in deep learning and being able to make
+                predictions from raw MRI scans can
+                significantly improve the pace of research in neuroscience. To this end, as a part of our research, we
+                are developing and adapting modern deep-learning algorithms to model brain data acquired by various
+                brain imaging techniques, such as magnetic resonance imaging (MRI) and diffusion tensor imaging (DTI).
+                We have proposed many novel model architectures to process MRI inputs for various tasks such as
+                computer-aided diagnosis or prognosis. Addressing challenges specific to neuroimaging, we have
+                demonstrated the benefits of using transfer learning and pre-training for neuroimaging, especially as
+                most neuroimaging datasets are small (usually hundreds rather than tens of thousands of scans). We have
+                also evaluated the harmonization of datasets and the additional value of fusing multiple modalities in
+                neuroimaging studies. This post summarizes our recent efforts in these directions.
+
             </p>
 
         </div>
@@ -149,25 +147,36 @@
             <!-- <h6 style="color: #D4AC0D; font-weight: bold;" >IGC's</h6> -->
             <h2 style="color : #D4AC0D"><b>Convolutional Neural Networks (CNNs) for Brain MRI and the use of
                     ImageNet</b></h2>
-            <p class="container pt-2 pr-5 pl-5 text-justify" style="color : white"> One of the most common deep
-                learning
-                layers for processing brain MRI inputs areis the 3D convolutional layers., 3D convolutional neural
-                networks - also known as roCNNs, or ConvNets -
-                - are an extension of 2D CNNs where the kernels are 3D. , and tThey were developed in order to take
-                advantage of the spatial information present in 3D medical images. However, 3D convolutional neural
-                networks require more parameters and can only work with are specific to 3D images. This specificity
-                makes it difficult torestricts the use or adapt of any a typically neural network trained on more
-                common
-                2D images (or natural images, such as photographs), or to adapt such a networkbe transferred to
-                neuroimaging tasks. To this end, we introduced 2D-Slice CNN models that process one 2D slice at a
-                time
-                with traditional 2D convolutional networks and combine the resulting representations using recurrent
-                operations and set operations. These models achieve performance similar to 3D-CNNs while being
-                faster to
-                train, more data-efficient, and less susceptible to noise in MRI slices. We further showed in a
-                paper at
-                ISBI 2023 that these 2D encoder-based models improve performance when initialized with
-                state-of-the-artstandard computer vision models.
+            <p class="container pt-2 pr-5 pl-5 text-justify" style="color : white"> Deep Neural Networks can learn
+                efficient representations from raw data and outperform traditional AI methods, which require extensive
+                feature engineering. Moreover, deep neural networks can also be pretrained on datasets not directly
+                related to the task we would like to perform and then finetuned with the task-specific dataset. This
+                procedure is particularly useful when task-related datasets are small and can lead to stable and better
+                results than training with task-specific datasets. As such deep neural networks can learn to predict
+                from raw MRI scans without requiring much preprocessing and are more accurate, thus reducing the time to
+                apply these to new problems. <br> <br>
+
+                Brain MRIs are three-dimensional (3D) tensors. One of the most common deep learning layers for
+                processing brain MRI inputs is the 3D convolutional layers. 3D convolutional neural networks - also
+                known as CNNs, or ConvNets - are an extension of 2D CNNs where the kernels are 3D. They were developed
+                to take advantage of the spatial information present in 3D medical images. However, 3D convolutional
+                neural networks require more parameters and can only work with 3D images. This specificity to 3D images
+                makes it difficult to use a typical neural network trained on more common 2D images (or natural images,
+                such as photographs) or to adapt such a network to neuroimaging tasks. In other words, the datasets we
+                can pretrain on are limited to 3D images.<br> <br>
+
+                To this end, we introduced 2D-Slice CNN models that process one 2D slice at a time with traditional 2D
+                convolutional networks and combine the resulting representations using <a
+                    href="https://www.spiedigitallibrary.org/conference-proceedings-of-spie/11583/1158303/Accurate-brain-age-prediction-using-recurrent-slice-based-networks/10.1117/12.2579630.full?SSO=1">recurrent
+                    operations.</a> We
+                demonstrate encouraging results with recurrent operations, and this was further improved by introducing
+                <a href="https://arxiv.org/abs/2102.04438">set operations</a> such as mean or attention in our ISBI 2021
+                paper. These models can achieve performance
+                similar to 3D-CNNs while being faster to train, more data-efficient, and less susceptible to noise in
+                MRI slices. We further showed in a paper at <a href="https://arxiv.org/abs/2102.04438">ISBI 2023</a>
+                that these 2D encoder-based models improve
+                performance when initialized with state-of-the-art computer vision models.
+
             </p>
 
         </div>
@@ -182,7 +191,7 @@
         <div class="jombotron">
             <h2 style="color : #D4AC0D"><b>Efficiently Training Vision Transformers on Structural MRI Scans for
                     Alzheimer’s Disease Detection</b></h2>
-            <p class="container pt-3 pr-5 pl-5 text-justify" style="color : white"> One of the most common deep
+            <!-- <p class="container pt-3 pr-5 pl-5 text-justify" style="color : white"> One of the most common deep
                 learning
                 layers for processing brain MRI inputs are the 3D convolutional layers. 3D convolutional neural
                 networks
@@ -202,22 +211,27 @@
                 paper at
                 ISBI 2023 that these 2D encoder-based models improve performance when initialized with
                 state-of-the-art
-                standard computer vision models.</p>
+                standard computer vision models.</p> -->
 
             <h3 class="container pt-3 pr-5 pl-5">Model Details</h3>
             <ul>
                 <li>The vision transformer (ViT) class of architectures were trained and tested for the AD diagnosis
-                    task based on brain MRI.</li>
+                    task based on brain MRI.
+                </li>
                 <li>Two main variants of the ViTs included in this paper were the ViT B/16 and the scaled-down
                     version
                     called NiT.</li>
-                <li>We show the potential of pretraining on synthetic MRI scans for neuroimaging tasks.</li>
-                <li>We present the effect of advanced training strategies like learning rate decay with warmups,
-                    Mixup
-                    data augmentation.</li>
-                <li>Data-scaling curves show the effect of training sample size on test-time performance of the
-                    Vision
-                    Transformer.</li>
+                <li>Two main variants of the ViTs included in this paper were the ViT B/16 and the scaled down version
+                    called NiT.
+                </li>
+                <li>We show the potential of pretraining on synthetic MRI scans for neuroimaging tasks.
+                </li>
+                <li>We present the effect of advanced training strategies like learning rate decay with warmups, mixup
+                    data augmentation.
+                </li>
+                <li>Data-scaling curves show the effect of training sample size on test-time performance of the Vision
+                    Transformer.
+                </li>
             </ul>
             <img class="container pt-3 pr-5 pl-5" src="blogimages/vit_archi.png">
 
@@ -230,28 +244,42 @@
                 <li>Not tested on tasks other than AD diagnosis using T1-weighted brain MRI.</li>
             </ul>
 
+            <h3 class="container pt-3 pr-5 pl-5">Metrics</h3>
+            <ul>
+                <li>Area under the receiver characteristic curve (ROC-AUC).
+                </li>
+                <li>Performance metrics based on the ROC curve including accuracy, precision, recall, F1-score.
+                </li>
+                <li>Optional use of Youden’s index to optimize the threshold selection from the ROC curve.
+                </li>
+            </ul>
+
+
             <h3 class="container pt-3 pr-5 pl-5">Training Data</h3>
             <ul>
                 <li>Trained on 2,577 (from 747 subjects) T1-weighted brain MRI scans from Alzheimer’s Disease
-                    Neuroimaging Initiative (ADNI). </li>
-                <li>Additional details in the reference below.
-                    38,710 T1-w scans from the UK Biobank and 100,000 from the LDM100K dataset wereare used for
-                    pre-training.</li>
+                    Neuroimaging Initiative (ADNI). Additional details in the reference below.
+                </li>
+                <li>38,710 T1-w scans from the UK Biobank and 100,000 from the LDM100K dataset were used for
+                    pre-training.
+                </li>
             </ul>
 
             <h3 class="container pt-3 pr-5 pl-5">Evaluation Data</h3>
             <ul>
-                <li>Models tested on a test set with 1,219 T1-w scans (from 359 subjects) from ADNI. </li>
+                <li>Models tested on a test set with 1,219 T1-w scans (from 359 subjects) from ADNI.
+                </li>
                 <li>600 scans (600 subjects) from Open Access Series of Imaging Studies, phase 3 (OASIS) used as an
-                    out-of-distribution dataset to independently validate generalization capability.</li>
+                    out-of-distribution dataset to independently validate generalization capability.
+                </li>
             </ul>
 
             <h3 class="container pt-3 pr-5 pl-5">Caveats and Recommendations</h3>
             <ul>
                 <li>While the hyperparameters and training strategies in the paper were tested for the experiments
-                    proposed in the paper, additional tuning might be required given different architectures, tasks,
-                    and
-                    datasets.</li>
+                    proposed in the paper, additional tuning might be required given different architectures, tasks, and
+                    datasets.
+                </li>
             </ul>
 
             <h3 class="container pt-3 pr-5 pl-5">Quantitative Analysis</h3>
@@ -259,11 +287,9 @@
 
             <h3 class="container pt-3 pr-5 pl-5">Key Takeaway</h3>
             <ul>
-                <li>New vision transformer class of architectures for AD diagnosis using T1-weighted MRI was tested
-                    to
-                    boost performance by 1% from scratch compared to CNN; and 9% and 5% using pre-training on real,
-                    and
-                    synthetic data, respectively.</li>
+                <li> <b>New vision transformer</b> class of architectures for AD diagnosis using T1-weighted MRI was
+                    tested to boost performance by 1% from scratch compared to CNN; and 9% and 5% using pre-training on
+                    real and synthetic data, respectively.</li>
             </ul>
 
 
