@@ -4,9 +4,10 @@
 mdtree, convert markdown to html with TOC(table of contents) tree. https://github.com/menduo/mdtree
 """
 import sys, os
+import glob
 import markdown
-from mdtree.mdutils import PY3, clean_list, parse_title, to_bool, to_unicode, utf8, ImageCheckPattern
-from mdtree.parser import gen_html, prepare_static_files, parse_static_files, adjust_ext_list
+from mdutils import PY3, clean_list, parse_title, to_bool, to_unicode, utf8, ImageCheckPattern
+from mdparser import gen_html, prepare_static_files, parse_static_files, adjust_ext_list
 
 _d_static_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
 
@@ -33,6 +34,10 @@ class MdTree(object):
 
         self.title = kwargs.get("title", "")
         self._html = ""
+        self.template = kwargs.get("template")
+        if self.template== "":
+            self.template= os.path.join(_d_static_path, "html/template.html")
+        # print(f"template {self.template}", kwargs)
 
         self.js_list = kwargs.get("js", [])
         self.css_list = kwargs.get("css", [])
@@ -84,7 +89,7 @@ class MdTree(object):
             md2.inlinePatterns["image_link"] = ImageCheckPattern(self.base_dir, md2)
         return md2, md_meta
 
-    def convert(self, source):
+    def convert(self, source, all_post_content):
         """
         convert markdown to html with TOC
         :param str source: contents of markdown file
@@ -100,13 +105,17 @@ class MdTree(object):
         toc = getattr(md, "toc", "")
 
         # prepare the basic static files
-        css_base, js_base = prepare_static_files()
-
+        # Umang:remove
+        # css_base, js_base = prepare_static_files()
+        css_base, js_base = "", ""
         # get title from init、meta、markdown source
         title = self.title or parse_title(source)
 
         # try to get more static files from markdown source
         css_more, js_more = parse_static_files(md_meta, self.css_list, self.js_list)
+
+        template = self.template
+        print(css_more)
 
         params = {
             "title": title,
@@ -116,12 +125,14 @@ class MdTree(object):
             "css_more": css_more,
             "js_more": js_more,
             "toc": toc,
+            "template": template,
+            "all_post_content": all_post_content
         }
 
         self._html = gen_html(params)
         return self._html
 
-    def convert_file(self, spath):
+    def convert_file(self, spath, all_post_content):
         """
         convert markdown to html with TOC
         :param str spath: path of source file
@@ -133,7 +144,7 @@ class MdTree(object):
         with open(spath) as f:
             mdstring = f.read()
 
-        return self.convert(mdstring)
+        return self.convert(mdstring, all_post_content)
 
     def save_file(self, tpath):
         """
@@ -141,7 +152,8 @@ class MdTree(object):
         :param str tpath: path of target file
         :return:
         """
-        with open(tpath, "w") as f:
+        # print(self._html)
+        with open(tpath, "wb") as f:
             f.write(self._html)
         return tpath
 
@@ -154,9 +166,10 @@ def convert_from_file(**kwargs):
     """
     source = kwargs["source"] or ""
     target = kwargs.get("target") or ""
-
+    # print(kwargs)
     mdtree = MdTree(**kwargs)
-    html = mdtree.convert_file(source)
+    all_post_content = parse_all_posts(kwargs.get("md_folder"))
+    html = mdtree.convert_file(source, all_post_content)
     html = utf8(html)
     if target:
         mdtree.save_file(target)
@@ -166,3 +179,35 @@ def convert_from_file(**kwargs):
         else:
             sys.stdout.write(html)
     return html
+
+
+def get_title_by_md_file(file):
+    with open(file) as f:
+        source = f.read()
+
+        md1 = markdown.Markdown(extensions=["markdown.extensions.meta"])
+        md1.convert(source)
+        md_meta = getattr(md1, "Meta")
+        return md_meta["title"][0]
+
+def parse_all_posts(folder):
+    # here we parse all posts
+    if folder=="":
+        return ""
+    
+    links = [] 
+    for file in glob.glob(f"{folder}/*"):
+
+        title = get_title_by_md_file(file)
+        file = file[len(folder):]
+        links.append((file[1:-2]+"html", title))
+    
+    content = "<ul class='posts'>"
+    for l in links:
+        content += f"\n <li><a href='{l[0]}'>{l[1]}</a>"
+
+    content += "\n </ul>"
+
+    print(links)
+    print(content)
+    return content 

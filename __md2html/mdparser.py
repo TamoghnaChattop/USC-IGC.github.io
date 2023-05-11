@@ -2,7 +2,7 @@
 # coding=utf-8
 import os
 import datetime
-from mdtree.mdutils import to_unicode, utf8, clean_list
+from mdutils import to_unicode, utf8, clean_list
 
 _d_static_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
 
@@ -23,7 +23,7 @@ def gen_html(params):
     Generate html
     :return str: html
     """
-    with open(os.path.join(_d_static_path, "html/template.html")) as f:
+    with open(params["template"], "r") as f:
         _tpl = f.read()
         _tpl = to_unicode(_tpl)
 
@@ -34,6 +34,8 @@ def gen_html(params):
     js_base = to_unicode(params["js_base"])
     content = to_unicode(params["content"])
     toc = to_unicode(params["toc"])
+    all_post_content = to_unicode(params["all_post_content"])
+
 
     generated_at = """<div id="generated-at">
         Generated at: %s
@@ -43,7 +45,7 @@ def gen_html(params):
 
     html = _tpl.format(title=title, content=content, css_base=css_base, js_base=js_base,
                        toc_content=toc, css_more=css_more, js_more=js_more,
-                       generated_at=generated_at)
+                       generated_at=generated_at, all_post_content=all_post_content)
 
     return utf8(html)
 
