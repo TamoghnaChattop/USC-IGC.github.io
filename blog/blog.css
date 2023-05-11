@@ -88,18 +88,18 @@ ul.posts a.selected {
 
 #content-container h1{
     text-align: left;
-    padding-top: 20px;
+    padding-top: 40px;
 }
 
 
 #content-container h2{
     text-align: left;
-    padding-top: 20px;
+    padding-top: 40px;
 }
 
 #content-container h3{
     text-align: left;
-    padding-top: 20px;
+    padding-top: 40px;
 }
 
 #content-container h4{
@@ -108,5 +108,19 @@ ul.posts a.selected {
 
 
 
+.pages p {
+    padding-left: 40px;
+}
 
+/* 
+.pages {
+    padding-bottom: 40px;
+}
 
+.pages h2 a {
+    font-size: xx-large;
+}
+
+#content-container .pages h2 {
+    padding: 0;
+} */

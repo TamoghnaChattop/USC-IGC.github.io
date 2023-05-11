@@ -208,6 +208,4 @@ def parse_all_posts(folder):
 
     content += "\n </ul>"
 
-    # print(links)
-    # print(content)
     return content 
