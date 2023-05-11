@@ -115,7 +115,7 @@ class MdTree(object):
         css_more, js_more = parse_static_files(md_meta, self.css_list, self.js_list)
 
         template = self.template
-        print(css_more)
+        # print(css_more)
 
         params = {
             "title": title,
@@ -208,6 +208,6 @@ def parse_all_posts(folder):
 
     content += "\n </ul>"
 
-    print(links)
-    print(content)
+    # print(links)
+    # print(content)
     return content 

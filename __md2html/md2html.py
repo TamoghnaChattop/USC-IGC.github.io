@@ -44,7 +44,7 @@ def main(c_func):  # pragma: no cover
     if not args.source:
         return
 
-    print(args)
+    # print(args)
     params = {
         "source": args.source,
         "target": args.target,
