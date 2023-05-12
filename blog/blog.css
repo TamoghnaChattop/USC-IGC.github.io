@@ -25,13 +25,9 @@ h3 {
 }
 
 .navbar-title {
-    flex-grow: 16;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* add this to center vertically */
-    text-align: center;
-    /* add this to center horizontally */
+    position: absolute;
+    width: 55%;
+    left: 27.5%;
     color: #D4AC0D;
 }
 
@@ -55,7 +51,7 @@ h3 {
     position: fixed;
     top: 150px;
     left: 0;
-    margin: 1%;
+    /* margin: 1%; */
     padding-left: 1%;
     padding-right: 1%;
 }
@@ -97,7 +93,6 @@ ul.posts a.selected {
     top: 100px;
     left: 21%;
     margin: 0.5%;
-    max-width: 800px;
 }
 
 #all_posts {
@@ -112,6 +107,22 @@ ul.posts a.selected {
 #content-container h1 {
     text-align: left;
     padding-top: 40px;
+}
+
+#content-container figcaption {
+   text-align: center;
+   color: white;
+}
+
+#content-container figure {
+    margin: 30px 10px;
+    width: fit-content;
+}
+
+#content-container figure img {
+    /* width: inherit; */
+    width: auto;
+    max-width: 100%;
 }
 
 
