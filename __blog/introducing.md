@@ -23,7 +23,19 @@ Deep Neural Networks can learn efficient representations from raw data and outpe
 
 Brain MRIs are three-dimensional (3D) tensors. One of the most common deep learning layers for processing brain MRI inputs is the 3D convolutional layers. [3D convolutional neural networks](https://www.sciencedirect.com/science/article/pii/S1361841520302358) - also known as CNNs, or ConvNets - are an extension of 2D CNNs where the kernels are 3D. They were developed to take advantage of the spatial information present in 3D medical images. However, 3D convolutional neural networks require more parameters and can only work with 3D images. This specificity to 3D images makes it difficult to use a typical neural network trained on more common 2D images (or natural images, such as photographs) or to adapt such a network to neuroimaging tasks. In other words, the datasets we can pretrain on are limited to 3D images. 
 
+
+<figure class="image">
+  <img src="../blogimages/intro_arch.png" alt="Architecture of 2D-Slice-CNN model">
+  <figcaption>Figure 1. Architecture of 2D-Slice-CNN model. Each slice is processed by a 2D CNN</figcaption>
+</figure>
+
+
 To this end, we introduced 2D-Slice CNN models that process one 2D slice at a time with traditional 2D convolutional networks and combine the resulting representations using recurrent operations. We demonstrated encouraging results with [recurrent operations](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/11583/1158303/Accurate-brain-age-prediction-using-recurrent-slice-based-networks/10.1117/12.2579630.short) and further improved the results by introducing set operations such as mean or attention in our [ISBI 2021 paper](https://arxiv.org/abs/2102.04438). Figure 1 describes our idea in a nutshell. We split MRIs into 2D frames, which are processed by a stack of 2D convolutional layers (any neural network that works for natural/2D images, for example, ResNets, is applicable). The resulting representations are combined with aggregation operations like mean, RNN, or attention. We call these 2D-slice-CNN models.
+
+<figure class="image">
+  <img src="../blogimages/intro_training_curve.png" alt="Training curve`">
+  <figcaption>Figure 2. Training curves for different neural network architectures</figcaption>
+</figure>
 
 We evaluated our models on the task of predicting age from MRIs of healthy subjects. This is commonly referred to as the brain age prediction task. [The brain-age gap, or the difference between predicted brain age and chronological age, can be a marker of overall brain health.  It may reflect neuroanatomical abnormalities and therefore aid early detection of brain-based disorders](https://www.thelancet.com/journals/ebiom/article/PIIS2352-3964(21)00393-5/fulltext). Our proposed architecture achieved performance similar to 3D-CNNs while being faster to train (Figure 2), more data-efficient, and less susceptible to noise in MRI slices (see our [paper](https://arxiv.org/abs/2102.04438) for detailed results). We continue to improve the neural networks for neuroimaging datasets, for example, [using Vision Transformers (ViTs) for MRI images](https://arxiv.org/abs/2303.08216) or by [harmonizing datasets from several scanners to increase the effective dataset sizes](https://www.biorxiv.org/content/10.1101/2022.11.15.516349v1).    
 
