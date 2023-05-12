@@ -25,12 +25,13 @@ def parse_all_posts(folder):
         file = file[len(folder):]
         links.append((file[1:-2]+"html", title, summary))
     
-    content = ""
+    content = "<div class='pages'>"
     for l in links:
-        content += "\n <div class='pages'>"
+        content += "\n <div class='page'>"
         content += f"\n <h2><a href='{l[0]}'>{l[1]}</a></h2>"
         content += f"\n <p> {l[2]}</p>"
-        content += "\n<div>"
+        content += "\n</div>"
+    content += "\n</div>"
 
     return content 
 

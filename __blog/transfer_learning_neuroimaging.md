@@ -43,7 +43,7 @@ This post summarizes findings of our SIPAIM 2022 paper [“Evaluation of transfe
   <figcaption></figcaption>
 </figure>
 
-A simple framework for contrastive learning of visual representations. Two separate data augmentation operators are sampled from the same family of augmentations (t ∼ T and t’ ∼ T) and applied to each data example to obtain two correlated views. A base encoder network f(·) and a projection head g(·) are trained to maximize agreement using a contrastive loss. After training is completed, we throw away the projection head g(·) and use encoder f(·) and representation h for downstream tasks. [Reference for the figure above and text description below: T. Chen et al., “A Simple Framework for Contrastive Learning of Visual Representations,” ICML, 1597–1607, 2020.]
+A simple framework for contrastive learning of visual representations. Two separate data augmentation operators are sampled from the same family of augmentations (t ∼ T and t’ ∼ T) and applied to each data example to obtain two correlated views. A base encoder network f(·) and a projection head g(·) are trained to maximize agreement using a contrastive loss. After training is completed, we throw away the projection head g(·) and use encoder f(·) and representation h for downstream tasks. [Reference for the figure above and text description below: [T. Chen et al., “A Simple Framework for Contrastive Learning of Visual Representations,” ICML, 1597–1607, 2020.](https://arxiv.org/abs/2002.05709) ]
 
 
 
@@ -64,9 +64,10 @@ A simple framework for contrastive learning of visual representations. Two separ
 
 
 ## Caveats and Recommendations
-- While these hyperparameters and training strategies in the paper were tested for the experiments proposed in the paper, additional tuning maymight be required given different architectures, tasks, and datasets.
+- While these hyperparameters and training strategies were tested for the experiments proposed in the paper, additional tuning may be required given different architectures, tasks, and datasets.
+
 
 ## References:
-- T. Chen, et. al, “A Simple Framework for Contrastive Learning of Visual Representations,” ICML, 1597–1607, 2020.
-- B. Dufumier, et al., “Contrastive Learning with Continuous Proxy Meta-data for 3D MRI Classification,” MICCAI 2021.
-- N.J. Dhinagar et al., “Evaluation of transfer learning methods for detecting Alzheimer’s disease with Brain MRI,” 18th International Symposium on Medical Information Processing and Analysis, SPIE SIPAIM 2022. 
+- [T. Chen et al., “A Simple Framework for Contrastive Learning of Visual Representations,” ICML, 1597–1607, 2020](https://arxiv.org/abs/2002.05709).
+- [B. Dufumier et al., “Contrastive Learning with Continuous Proxy Meta-data for 3D MRI Classification,” MICCAI 2021](https://arxiv.org/abs/2106.08808).
+- [N.J. Dhinagar et al., “Evaluation of transfer learning methods for detecting Alzheimer’s disease with Brain MRI,” 18th International Symposium on Medical Information Processing and Analysis, SPIE SIPAIM 2022](https://www.biorxiv.org/content/biorxiv/early/2022/10/12/2022.08.23.505030.full.pdf).
